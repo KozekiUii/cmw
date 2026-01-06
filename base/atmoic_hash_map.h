@@ -64,8 +64,9 @@ public:
 private:
   /**
    * @struct Entry
-   * @brief Node type used by an atomic hash map: holds a key, an atomically-owned value pointer,
-   *        and an atomic pointer to the next node for chaining.
+   * @brief Node type used by an atomic hash map: holds a key, an
+   * atomically-owned value pointer, and an atomic pointer to the next node for
+   * chaining.
    */
   struct Entry {
     Entry() {}
@@ -86,7 +87,7 @@ private:
     std::atomic<V *> value_ptr = {nullptr};
     std::atomic<Entry *> next = {nullptr};
   };
-  
+
   class Bucket {
   public:
     Bucket() : head_(new Entry()) {}
@@ -112,8 +113,9 @@ private:
       return false;
     }
     /**
-     * @brief Find the target entry with given key, if not found, return the insert position
-     * 
+     * @brief Find the target entry with given key, if not found, return the
+     * insert position
+     *
      * @param key the key to find
      * @param prev_ptr the previous entry pointer
      * @param target_ptr the target entry pointer
@@ -130,13 +132,13 @@ private:
           *prev_ptr = prev;
           *target_ptr = target;
           return true;
-        // not found but return the insert position
+          // not found but return the insert position
         } else if (target->key > key) {
           *prev_ptr = prev;
           *target_ptr = target;
           return false;
         } else {
-        // continue to next
+          // continue to next
           prev = target;
           m_target = target->next.load(std::memory_order_acquire);
         }
