@@ -36,14 +36,18 @@ class AtomicRWLock {
 
 inline void AtomicRWLock::ReadLock() {
   uint32_t retry_times = 0;
-  // lock_num 存储锁的当前状态
-  // lock_num > 0 ：有成员在进行读操作
-  // lock_num < 0 ：有成员在进行写操作
-  // lock_num = 0 ：写操作结束了,锁处于空闲状态
+  // lock_num 存储锁的当前状态;
+  // lock_num > 0 ：有成员在进行读操作;
+  // lock_num < 0 ：有成员在进行写操作;
+  // lock_num = 0 ：写操作结束了,锁处于空闲状态;
   // load is a atomic operation
   int32_t lock_num = lock_num_.load();
+  
   if (write_first_) {
     do {
+      // 若 lock_num < 0，说明有成员在进行写操作，
+      // 若 write_lock_wait_num_ > 0，说明有成员在等待写操作
+      // 若满足条件，则继续自旋等待，每5次让出1次CPU时间片，让给其他线程
       while (lock_num < RW_LOCK_FREE || write_lock_wait_num_.load() > 0) {
         if (++retry_times == MAX_RETRY_TIMES) {
           // saving cpu
@@ -57,6 +61,8 @@ inline void AtomicRWLock::ReadLock() {
                                               std::memory_order_relaxed));
   } else {
     do {
+      // 若 lock_num < 0，说明有成员在进行写操作
+      // 由于是读优先，所以读线程可以抢占等待的写操作，就不用判断是否有写线程在等待了
       while (lock_num < RW_LOCK_FREE) {
         if (++retry_times == MAX_RETRY_TIMES) {
           // saving cpu
@@ -75,10 +81,12 @@ inline void AtomicRWLock::WriteLock() {
   int32_t rw_lock_free = RW_LOCK_FREE;
   uint32_t retry_times = 0;
   write_lock_wait_num_.fetch_add(1);
+  // 若lock_num_ = rw_lock_free，说明锁处于空闲状态，可以进行写操作
+  // 若lock_num_ != rw_lock_free，说明锁处于忙碌状态，需要自旋等待
   while (!lock_num_.compare_exchange_weak(rw_lock_free, WRITE_EXCLUSIVE,
                                           std::memory_order_acq_rel,
                                           std::memory_order_relaxed)) {
-    // rw_lock_free will change after CAS fail, so init agin
+    // rw_lock_free will change after CAS fail, so init again
     rw_lock_free = RW_LOCK_FREE;
     if (++retry_times == MAX_RETRY_TIMES) {
       // saving cpu
@@ -86,6 +94,7 @@ inline void AtomicRWLock::WriteLock() {
       retry_times = 0;
     }
   }
+  // 成功获取写锁，等待的写锁数减 1
   write_lock_wait_num_.fetch_sub(1);
 }
 
