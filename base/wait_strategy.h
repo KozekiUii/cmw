@@ -41,7 +41,9 @@ class BlockWaitStrategy : public WaitStrategy {
 //睡眠等待策略
 class SleepWaitStrategy : public WaitStrategy {
  public:
+  // constructor function
   SleepWaitStrategy() {}
+  // 禁止隐式类型转换,强制要求显式地创建对象
   explicit SleepWaitStrategy(uint64_t sleep_time_us)
       : sleep_time_us_(sleep_time_us) {}
 
@@ -63,6 +65,7 @@ class YieldWaitStrategy : public WaitStrategy {
  public:
   YieldWaitStrategy() {}
   bool EmptyWait() override {
+    // 放弃CPU时间片
     std::this_thread::yield();
     return true;
   }
@@ -85,7 +88,7 @@ class TimeoutBlockWaitStrategy : public WaitStrategy {
   void NotifyOne() override { cv_.notify_one(); }
 
   bool EmptyWait() override {
-    /* 线程阻塞 如果超时了则返回false，没超时则返回false*/
+    /* 线程阻塞 如果超时了则返回false，没超时则返回true*/
     std::unique_lock<std::mutex> lock(mutex_);
     if (cv_.wait_for(lock, time_out_) == std::cv_status::timeout) {
       return false;
