@@ -28,8 +28,8 @@ class ThreadPool {
   ~ThreadPool();
 
  private:
-  std::vector<std::thread> workers_;
-  BoundedQueue<std::function<void()>> task_queue_;
+ BoundedQueue<std::function<void()>> task_queue_;
+ std::vector<std::thread> workers_;
   std::atomic_bool stop_;
 };
 
@@ -42,6 +42,7 @@ inline ThreadPool::ThreadPool(std::size_t threads, std::size_t max_task_num)
   }
 
   /* 初始化线程池 创建空的任务，每个任务都是一个while循环 */
+  // reserve预分配内存,避免频繁的内存分配
   workers_.reserve(threads);
   for (size_t i = 0; i < threads; ++i) {
     workers_.emplace_back([this] {
@@ -58,20 +59,25 @@ inline ThreadPool::ThreadPool(std::size_t threads, std::size_t max_task_num)
 }
 
 // before using the return value, you should check value.valid()
+
+// Function to add tasks to the task queue;
+// The Enqueue function receives a callable object f and any parameters args..., and returns a std::future whose type is the return type after the call to f(args...)
 template <typename F, typename... Args>
 auto ThreadPool::Enqueue(F&& f, Args&&... args)
     -> std::future<typename std::result_of<F(Args...)>::type> {
   using return_type = typename std::result_of<F(Args...)>::type;
 
+  // bind packages the function and parameters into a parameterless call function return_type(), packaged_task wraps a parameterless function with a return value of return_type, which can be obtained through future, and finally make_shared hands over control to shared_ptr
   auto task = std::make_shared<std::packaged_task<return_type()>>(
       std::bind(std::forward<F>(f), std::forward<Args>(args)...));
-  
+  // get the future of the task
   std::future<return_type> res = task->get_future();
 
   // don't allow enqueueing after stopping the pool
   if (stop_) {
     return std::future<return_type>();
   }
+  // lambda function: capture task, () is a parameterless function, (*task)() is a calling task
   task_queue_.Enqueue([task]() { (*task)(); });
   return res;
 };
@@ -79,11 +85,15 @@ auto ThreadPool::Enqueue(F&& f, Args&&... args)
 // the destructor joins all threads
 /* 唤醒线程池里所有线程，然后等待所有子线程执行完毕，释放资源*/
 inline ThreadPool::~ThreadPool() {
+  // prevent double destruction
   if (stop_.exchange(true)) {
     return;
   }
+  // wake up all threads
   task_queue_.BreakAllWait();
+  // wait for all threads to finish
   for (std::thread& worker : workers_) {
+    // join() blocks the calling thread until the thread it is called on terminates
     worker.join();
   }
 }

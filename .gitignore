@@ -1,2 +1,6 @@
 .clangd
 .vscode/settings.json
+base/test/build
+base/test/bin
+base/bin
+.vscode

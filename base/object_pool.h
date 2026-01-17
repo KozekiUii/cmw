@@ -10,33 +10,31 @@
 #include <new>
 #include <utility>
 
-
 #include <cmw/base/for_each.h>
 #include <cmw/base/macros.h>
 
-
-namespace hnu    {
-namespace cmw   {
+namespace hnu {
+namespace cmw {
 namespace base {
 
 template <typename T>
 class ObjectPool : public std::enable_shared_from_this<ObjectPool<T>> {
- public:
+public:
   using InitFunc = std::function<void(T *)>;
   using ObjectPoolPtr = std::shared_ptr<ObjectPool<T>>;
 
   template <typename... Args>
-  explicit ObjectPool(uint32_t num_objects, Args &&... args);
+  explicit ObjectPool(uint32_t num_objects, Args &&...args);
 
   template <typename... Args>
-  ObjectPool(uint32_t num_objects, InitFunc f, Args &&... args);
+  ObjectPool(uint32_t num_objects, InitFunc f, Args &&...args);
 
   virtual ~ObjectPool();
 
   /* 拿到一个对象*/
   std::shared_ptr<T> GetObject();
 
- private:
+private:
   struct Node {
     T object;
     Node *next;
@@ -53,7 +51,7 @@ class ObjectPool : public std::enable_shared_from_this<ObjectPool<T>> {
 
 template <typename T>
 template <typename... Args>
-ObjectPool<T>::ObjectPool(uint32_t num_objects, Args &&... args)
+ObjectPool<T>::ObjectPool(uint32_t num_objects, Args &&...args)
     : num_objects_(num_objects) {
   const size_t size = sizeof(Node);
   object_arena_ = static_cast<char *>(std::calloc(num_objects_, size));
@@ -70,7 +68,7 @@ ObjectPool<T>::ObjectPool(uint32_t num_objects, Args &&... args)
 
 template <typename T>
 template <typename... Args>
-ObjectPool<T>::ObjectPool(uint32_t num_objects, InitFunc f, Args &&... args)
+ObjectPool<T>::ObjectPool(uint32_t num_objects, InitFunc f, Args &&...args)
     : num_objects_(num_objects) {
   const size_t size = sizeof(Node);
   object_arena_ = static_cast<char *>(std::calloc(num_objects_, size));
@@ -86,8 +84,7 @@ ObjectPool<T>::ObjectPool(uint32_t num_objects, InitFunc f, Args &&... args)
   }
 }
 
-template <typename T>
-ObjectPool<T>::~ObjectPool() {
+template <typename T> ObjectPool<T>::~ObjectPool() {
   if (object_arena_ != nullptr) {
     const size_t size = sizeof(Node);
     FOR_EACH(i, 0, num_objects_) {
@@ -97,8 +94,7 @@ ObjectPool<T>::~ObjectPool() {
   }
 }
 
-template <typename T>
-void ObjectPool<T>::ReleaseObject(T *object) {
+template <typename T> void ObjectPool<T>::ReleaseObject(T *object) {
   if (cyber_unlikely(object == nullptr)) {
     return;
   }
@@ -107,8 +103,7 @@ void ObjectPool<T>::ReleaseObject(T *object) {
   free_head_ = reinterpret_cast<Node *>(object);
 }
 
-template <typename T>
-std::shared_ptr<T> ObjectPool<T>::GetObject() {
+template <typename T> std::shared_ptr<T> ObjectPool<T>::GetObject() {
   if (cyber_unlikely(free_head_ == nullptr)) {
     return nullptr;
   }
@@ -121,12 +116,8 @@ std::shared_ptr<T> ObjectPool<T>::GetObject() {
   return obj;
 }
 
-
-}
-}
-}
-
-
-
+} // namespace base
+} // namespace cmw
+} // namespace hnu
 
 #endif

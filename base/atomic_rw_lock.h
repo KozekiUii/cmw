@@ -35,10 +35,10 @@ private:
 
 inline void AtomicRWLock::ReadLock() {
   uint32_t retry_times = 0;
-  // lock_num 存储锁的当前状态;
-  // lock_num > 0 ：有成员在进行读操作;
-  // lock_num < 0 ：有成员在进行写操作;
-  // lock_num = 0 ：写操作结束了,锁处于空闲状态;
+  // lock_num 存储锁的当前状态;;
+  // lock_num > 0 ：有成员在进行读操作;;
+  // lock_num < 0 ：有成员在进行写操作;;
+  // lock_num = 0 ：写操作结束了,锁处于空闲状态;;
   // load is a atomic operation
   int32_t lock_num = lock_num_.load();
   
@@ -81,13 +81,6 @@ inline void AtomicRWLock::WriteLock() {
   uint32_t retry_times = 0;
   // atomic operation
   write_lock_wait_num_.fetch_add(1);
-<<<<<<< HEAD
-  // 检查锁是否空闲，如果空闲将 lock_num_ 设为 WRITE_EXCLUSIVE，即获取了写锁
-  // 若锁不空闲，将 rw_lock_free 设为 lock_num_ 的值，进入循环
-=======
-  // 若lock_num_ = rw_lock_free，说明锁处于空闲状态，可以进行写操作
-  // 若lock_num_ != rw_lock_free，说明锁处于忙碌状态，需要自旋等待
->>>>>>> 2141bbfb73440fdeb89d938ad4a834b211e59542
   while (!lock_num_.compare_exchange_weak(rw_lock_free, WRITE_EXCLUSIVE,
                                           std::memory_order_acq_rel,
                                           std::memory_order_relaxed)) {
