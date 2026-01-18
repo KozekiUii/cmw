@@ -1,5 +1,4 @@
-base/test
+base/test/build
+base/test/bin
 base/bin
 .vscode
-build
-.cache

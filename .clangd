@@ -1,6 +1,6 @@
 CompileFlags:
   Add: 
-    - "-IE:/Study"
-    - "-IE:/Study/cmw"
-    - "-IE:/Study/cmw/thirdparty"
-    - "-IE:/Study/cmw/transport"
+    - "-ID:/Study"
+    - "-ID:/Study/cmw"
+    - "-ID:/Study/cmw/thirdparty"
+    - "-ID:/Study/cmw/transport"
