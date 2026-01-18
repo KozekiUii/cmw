@@ -1,0 +1,225 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "D:/Program Files (x86)/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeDetermineSystem.cmake:233 (message)"
+      - "CMakeLists.txt:13 (project)"
+    message: |
+      The system is: Windows - 10.0.26200 - AMD64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "D:/Program Files (x86)/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "D:/Program Files (x86)/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "D:/Program Files (x86)/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:13 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: D:/Program Files/LLVM/bin/clang.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.exe"
+      
+      The C compiler identification is Clang, found in:
+        E:/Study/cmw/build/CMakeFiles/3.28.1/CompilerIdC/a.exe
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "D:/Program Files (x86)/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:1182 (message)"
+      - "D:/Program Files (x86)/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:247 (CMAKE_DETERMINE_MSVC_SHOWINCLUDES_PREFIX)"
+      - "D:/Program Files (x86)/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:13 (project)"
+    message: |
+      Detecting C compiler /showIncludes prefix:
+        
+  -
+    kind: "message-v1"
+    backtrace:
+      - "D:/Program Files (x86)/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:1182 (message)"
+      - "D:/Program Files (x86)/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:247 (CMAKE_DETERMINE_MSVC_SHOWINCLUDES_PREFIX)"
+      - "D:/Program Files (x86)/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:13 (project)"
+    message: |
+      Detecting C compiler /showIncludes prefix:
+        
+  -
+    kind: "message-v1"
+    backtrace:
+      - "D:/Program Files (x86)/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "D:/Program Files (x86)/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "D:/Program Files (x86)/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:13 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: D:/Program Files/LLVM/bin/clang++.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.exe"
+      
+      The CXX compiler identification is Clang, found in:
+        E:/Study/cmw/build/CMakeFiles/3.28.1/CompilerIdCXX/a.exe
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "D:/Program Files (x86)/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:1182 (message)"
+      - "D:/Program Files (x86)/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:247 (CMAKE_DETERMINE_MSVC_SHOWINCLUDES_PREFIX)"
+      - "D:/Program Files (x86)/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:13 (project)"
+    message: |
+      Detecting CXX compiler /showIncludes prefix:
+        
+  -
+    kind: "message-v1"
+    backtrace:
+      - "D:/Program Files (x86)/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:1182 (message)"
+      - "D:/Program Files (x86)/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:247 (CMAKE_DETERMINE_MSVC_SHOWINCLUDES_PREFIX)"
+      - "D:/Program Files (x86)/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:13 (project)"
+    message: |
+      Detecting CXX compiler /showIncludes prefix:
+        
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/Program Files (x86)/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "D:/Program Files (x86)/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:13 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "E:/Study/cmw/build/CMakeFiles/CMakeScratch/TryCompile-qmzaem"
+      binary: "E:/Study/cmw/build/CMakeFiles/CMakeScratch/TryCompile-qmzaem"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "D:/Program Files/LLVM/bin/clang-scan-deps.exe"
+      CMAKE_C_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'E:/Study/cmw/build/CMakeFiles/CMakeScratch/TryCompile-qmzaem'
+        
+        Run Build Command(s): "D:/Program Files (x86)/STM32CubeCLT_1.18.0/CMake/bin/cmake.exe" -E env VERBOSE=1 mingw32-make -f Makefile cmTC_2a094/fast
+        mingw32-make  -f CMakeFiles\\cmTC_2a094.dir\\build.make CMakeFiles/cmTC_2a094.dir/build
+        mingw32-make[1]: Entering directory 'E:/Study/cmw/build/CMakeFiles/CMakeScratch/TryCompile-qmzaem'
+        Building C object CMakeFiles/cmTC_2a094.dir/CMakeCCompilerABI.c.obj
+        "D:\\Program Files\\LLVM\\bin\\clang.exe"   -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_2a094.dir/CMakeCCompilerABI.c.obj -MF CMakeFiles\\cmTC_2a094.dir\\CMakeCCompilerABI.c.obj.d -o CMakeFiles\\cmTC_2a094.dir\\CMakeCCompilerABI.c.obj -c "D:\\Program Files (x86)\\STM32CubeCLT_1.18.0\\CMake\\share\\cmake-3.28\\Modules\\CMakeCCompilerABI.c"
+        Linking C executable cmTC_2a094.exe
+        "D:\\Program Files (x86)\\STM32CubeCLT_1.18.0\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_2a094.dir\\link.txt --verbose=1
+        "D:\\Program Files\\LLVM\\bin\\clang.exe" -fuse-ld=lld-link -nostartfiles -nostdlib -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console @CMakeFiles\\cmTC_2a094.dir\\objects1.rsp -o cmTC_2a094.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_2a094.lib -Xlinker /pdb:E:\\Study\\cmw\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qmzaem\\cmTC_2a094.pdb -Xlinker /version:0.0  
+        mingw32-make[1]: Leaving directory 'E:/Study/cmw/build/CMakeFiles/CMakeScratch/TryCompile-qmzaem'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/Program Files (x86)/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "D:/Program Files (x86)/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:13 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "E:/Study/cmw/build/CMakeFiles/CMakeScratch/TryCompile-8o4hoq"
+      binary: "E:/Study/cmw/build/CMakeFiles/CMakeScratch/TryCompile-8o4hoq"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "D:/Program Files/LLVM/bin/clang-scan-deps.exe"
+      CMAKE_CXX_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'E:/Study/cmw/build/CMakeFiles/CMakeScratch/TryCompile-8o4hoq'
+        
+        Run Build Command(s): "D:/Program Files (x86)/STM32CubeCLT_1.18.0/CMake/bin/cmake.exe" -E env VERBOSE=1 mingw32-make -f Makefile cmTC_12e5f/fast
+        mingw32-make  -f CMakeFiles\\cmTC_12e5f.dir\\build.make CMakeFiles/cmTC_12e5f.dir/build
+        mingw32-make[1]: Entering directory 'E:/Study/cmw/build/CMakeFiles/CMakeScratch/TryCompile-8o4hoq'
+        Building CXX object CMakeFiles/cmTC_12e5f.dir/CMakeCXXCompilerABI.cpp.obj
+        "D:\\Program Files\\LLVM\\bin\\clang++.exe"   -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_12e5f.dir/CMakeCXXCompilerABI.cpp.obj -MF CMakeFiles\\cmTC_12e5f.dir\\CMakeCXXCompilerABI.cpp.obj.d -o CMakeFiles\\cmTC_12e5f.dir\\CMakeCXXCompilerABI.cpp.obj -c "D:\\Program Files (x86)\\STM32CubeCLT_1.18.0\\CMake\\share\\cmake-3.28\\Modules\\CMakeCXXCompilerABI.cpp"
+        Linking CXX executable cmTC_12e5f.exe
+        "D:\\Program Files (x86)\\STM32CubeCLT_1.18.0\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_12e5f.dir\\link.txt --verbose=1
+        "D:\\Program Files\\LLVM\\bin\\clang++.exe" -fuse-ld=lld-link -nostartfiles -nostdlib -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console @CMakeFiles\\cmTC_12e5f.dir\\objects1.rsp -o cmTC_12e5f.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_12e5f.lib -Xlinker /pdb:E:\\Study\\cmw\\build\\CMakeFiles\\CMakeScratch\\TryCompile-8o4hoq\\cmTC_12e5f.pdb -Xlinker /version:0.0  
+        mingw32-make[1]: Leaving directory 'E:/Study/cmw/build/CMakeFiles/CMakeScratch/TryCompile-8o4hoq'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/Program Files (x86)/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/Internal/FeatureTesting.cmake:34 (try_compile)"
+      - "D:/Program Files (x86)/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/Internal/FeatureTesting.cmake:84 (_record_compiler_features)"
+      - "D:/Program Files (x86)/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake:121 (_record_compiler_features_cxx)"
+      - "D:/Program Files (x86)/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeDetermineCompileFeatures.cmake:70 (cmake_record_cxx_compile_features)"
+      - "D:/Program Files (x86)/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeTestCXXCompiler.cmake:70 (CMAKE_DETERMINE_COMPILE_FEATURES)"
+      - "CMakeLists.txt:13 (project)"
+    checks:
+      - "Detecting CXX compile features"
+    directories:
+      source: "E:/Study/cmw/build/CMakeFiles/CMakeScratch/TryCompile-3aab3c"
+      binary: "E:/Study/cmw/build/CMakeFiles/CMakeScratch/TryCompile-3aab3c"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "D:/Program Files/LLVM/bin/clang-scan-deps.exe"
+      CMAKE_CXX_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_CXX_FEATURE_TEST"
+      cached: true
+      stdout: |
+        Change Dir: 'E:/Study/cmw/build/CMakeFiles/CMakeScratch/TryCompile-3aab3c'
+        
+        Run Build Command(s): "D:/Program Files (x86)/STM32CubeCLT_1.18.0/CMake/bin/cmake.exe" -E env VERBOSE=1 mingw32-make -f Makefile cmTC_8b790/fast
+        mingw32-make  -f CMakeFiles\\cmTC_8b790.dir\\build.make CMakeFiles/cmTC_8b790.dir/build
+        mingw32-make[1]: Entering directory 'E:/Study/cmw/build/CMakeFiles/CMakeScratch/TryCompile-3aab3c'
+        Building CXX object CMakeFiles/cmTC_8b790.dir/feature_tests.cxx.obj
+        "D:\\Program Files\\LLVM\\bin\\clang++.exe"   -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd   -std=c++14 -MD -MT CMakeFiles/cmTC_8b790.dir/feature_tests.cxx.obj -MF CMakeFiles\\cmTC_8b790.dir\\feature_tests.cxx.obj.d -o CMakeFiles\\cmTC_8b790.dir\\feature_tests.cxx.obj -c E:\\Study\\cmw\\build\\CMakeFiles\\CMakeScratch\\TryCompile-3aab3c\\feature_tests.cxx
+        Linking CXX executable cmTC_8b790.exe
+        "D:\\Program Files (x86)\\STM32CubeCLT_1.18.0\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_8b790.dir\\link.txt --verbose=1
+        "D:\\Program Files\\LLVM\\bin\\clang++.exe" -fuse-ld=lld-link -nostartfiles -nostdlib -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console @CMakeFiles\\cmTC_8b790.dir\\objects1.rsp -o cmTC_8b790.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_8b790.lib -Xlinker /pdb:E:\\Study\\cmw\\build\\CMakeFiles\\CMakeScratch\\TryCompile-3aab3c\\cmTC_8b790.pdb -Xlinker /version:0.0  @CMakeFiles\\cmTC_8b790.dir\\linkLibs.rsp 
+        mingw32-make[1]: Leaving directory 'E:/Study/cmw/build/CMakeFiles/CMakeScratch/TryCompile-3aab3c'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/Program Files (x86)/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/Internal/FeatureTesting.cmake:34 (try_compile)"
+      - "D:/Program Files (x86)/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/Internal/FeatureTesting.cmake:84 (_record_compiler_features)"
+      - "D:/Program Files (x86)/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake:129 (_record_compiler_features_cxx)"
+      - "D:/Program Files (x86)/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeDetermineCompileFeatures.cmake:70 (cmake_record_cxx_compile_features)"
+      - "D:/Program Files (x86)/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeTestCXXCompiler.cmake:70 (CMAKE_DETERMINE_COMPILE_FEATURES)"
+      - "CMakeLists.txt:13 (project)"
+    checks:
+      - "Detecting CXX compile features"
+    directories:
+      source: "E:/Study/cmw/build/CMakeFiles/CMakeScratch/TryCompile-rj46hy"
+      binary: "E:/Study/cmw/build/CMakeFiles/CMakeScratch/TryCompile-rj46hy"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "D:/Program Files/LLVM/bin/clang-scan-deps.exe"
+      CMAKE_CXX_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_CXX_FEATURE_TEST"
+      cached: true
+      stdout: |
+        Change Dir: 'E:/Study/cmw/build/CMakeFiles/CMakeScratch/TryCompile-rj46hy'
+        
+        Run Build Command(s): "D:/Program Files (x86)/STM32CubeCLT_1.18.0/CMake/bin/cmake.exe" -E env VERBOSE=1 mingw32-make -f Makefile cmTC_a24c7/fast
+        mingw32-make  -f CMakeFiles\\cmTC_a24c7.dir\\build.make CMakeFiles/cmTC_a24c7.dir/build
+        mingw32-make[1]: Entering directory 'E:/Study/cmw/build/CMakeFiles/CMakeScratch/TryCompile-rj46hy'
+        Building CXX object CMakeFiles/cmTC_a24c7.dir/feature_tests.cxx.obj
+        "D:\\Program Files\\LLVM\\bin\\clang++.exe"   -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd   -std=c++14 -MD -MT CMakeFiles/cmTC_a24c7.dir/feature_tests.cxx.obj -MF CMakeFiles\\cmTC_a24c7.dir\\feature_tests.cxx.obj.d -o CMakeFiles\\cmTC_a24c7.dir\\feature_tests.cxx.obj -c E:\\Study\\cmw\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rj46hy\\feature_tests.cxx
+        Linking CXX executable cmTC_a24c7.exe
+        "D:\\Program Files (x86)\\STM32CubeCLT_1.18.0\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_a24c7.dir\\link.txt --verbose=1
+        "D:\\Program Files\\LLVM\\bin\\clang++.exe" -fuse-ld=lld-link -nostartfiles -nostdlib -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console @CMakeFiles\\cmTC_a24c7.dir\\objects1.rsp -o cmTC_a24c7.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_a24c7.lib -Xlinker /pdb:E:\\Study\\cmw\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rj46hy\\cmTC_a24c7.pdb -Xlinker /version:0.0  @CMakeFiles\\cmTC_a24c7.dir\\linkLibs.rsp 
+        mingw32-make[1]: Leaving directory 'E:/Study/cmw/build/CMakeFiles/CMakeScratch/TryCompile-rj46hy'
+        
+      exitCode: 0
+...

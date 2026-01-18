@@ -1,0 +1,14 @@
+[
+{
+  "directory": "E:/Study/cmw/build",
+  "command": "\"D:\\Program Files\\LLVM\\bin\\clang++.exe\"  @CMakeFiles/test01.dir/includes_CXX.rsp -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -std=gnu++14 -o CMakeFiles\\test01.dir\\src\\test01.cpp.obj -c E:\\Study\\cmw\\base\\test\\src\\test01.cpp",
+  "file": "E:/Study/cmw/base/test/src/test01.cpp",
+  "output": "CMakeFiles/test01.dir/src/test01.cpp.obj"
+},
+{
+  "directory": "E:/Study/cmw/build",
+  "command": "\"D:\\Program Files\\LLVM\\bin\\clang++.exe\"  @CMakeFiles/test02.dir/includes_CXX.rsp -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -std=gnu++14 -o CMakeFiles\\test02.dir\\src\\test02.cpp.obj -c E:\\Study\\cmw\\base\\test\\src\\test02.cpp",
+  "file": "E:/Study/cmw/base/test/src/test02.cpp",
+  "output": "CMakeFiles/test02.dir/src/test02.cpp.obj"
+}
+]
