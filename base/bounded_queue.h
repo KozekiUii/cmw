@@ -84,14 +84,16 @@ template <typename T>
 bool BoundedQueue<T>::Init(uint64_t size, WaitStrategy* strategy) {
   // Head and tail each occupy a space
   pool_size_ = size + 2;
-  // reinterpret_cat<T*> = (T*)，强制类型转换
+  // reinterpret_cat<T*> = (T*)，Force pointer type conversion
   pool_ = reinterpret_cast<T*>(std::calloc(pool_size_, sizeof(T)));
   if (pool_ == nullptr) {
     return false;
   }
   for (uint64_t i = 0; i < pool_size_; ++i) {
+    // placement new：don't allocate memory, just construct the object in the given memory location
     new (&(pool_[i])) T();
   }
+  /* if wait_strategy_ used to have a value, it will be deleted and the new strategy will be constructed*/
   wait_strategy_.reset(strategy);
   return true;
 }
