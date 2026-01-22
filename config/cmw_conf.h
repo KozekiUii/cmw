@@ -3,7 +3,7 @@
 
 #include <cmw/config/scheduler_conf.h>
 #include <cmw/config/transport_config.h>
-#include <nlohmann/json.hpp>
+#include <cmw/nlohmann/json.hpp>
 
 namespace hnu    {
 namespace cmw   {

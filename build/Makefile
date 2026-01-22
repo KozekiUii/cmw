@@ -141,6 +141,19 @@ test02/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\test02.dir\build.make CMakeFiles/test02.dir/build
 .PHONY : test02/fast
 
+#=============================================================================
+# Target rules for targets named this_test
+
+# Build rule for target.
+this_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 this_test
+.PHONY : this_test
+
+# fast build rule for target.
+this_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\this_test.dir\build.make CMakeFiles/this_test.dir/build
+.PHONY : this_test/fast
+
 src/test01.obj: src/test01.cpp.obj
 .PHONY : src/test01.obj
 
@@ -189,6 +202,30 @@ src/test02.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\test02.dir\build.make CMakeFiles/test02.dir/src/test02.cpp.s
 .PHONY : src/test02.cpp.s
 
+src/this_test.obj: src/this_test.cpp.obj
+.PHONY : src/this_test.obj
+
+# target to build an object file
+src/this_test.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\this_test.dir\build.make CMakeFiles/this_test.dir/src/this_test.cpp.obj
+.PHONY : src/this_test.cpp.obj
+
+src/this_test.i: src/this_test.cpp.i
+.PHONY : src/this_test.i
+
+# target to preprocess a source file
+src/this_test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\this_test.dir\build.make CMakeFiles/this_test.dir/src/this_test.cpp.i
+.PHONY : src/this_test.cpp.i
+
+src/this_test.s: src/this_test.cpp.s
+.PHONY : src/this_test.s
+
+# target to generate assembly for a file
+src/this_test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\this_test.dir\build.make CMakeFiles/this_test.dir/src/this_test.cpp.s
+.PHONY : src/this_test.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -199,12 +236,16 @@ help:
 	@echo ... rebuild_cache
 	@echo ... test01
 	@echo ... test02
+	@echo ... this_test
 	@echo ... src/test01.obj
 	@echo ... src/test01.i
 	@echo ... src/test01.s
 	@echo ... src/test02.obj
 	@echo ... src/test02.i
 	@echo ... src/test02.s
+	@echo ... src/this_test.obj
+	@echo ... src/this_test.i
+	@echo ... src/this_test.s
 .PHONY : help
 
 

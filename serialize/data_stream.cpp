@@ -35,6 +35,7 @@ DataStream::~DataStream()
 {
 }
 
+// 预留空间，如果空间不足，则扩容
 void DataStream::reserve(int len)
 {
     int size = m_buf.size();
@@ -56,6 +57,7 @@ void DataStream::reserve(int len)
     }
 }
 
+// 判断当前系统的字节序
 DataStream::ByteOrder DataStream::byteorder()
 {
     int n = 0x12345678;
@@ -114,6 +116,7 @@ void DataStream::show() const
         case DataType::STRING:
             if ((DataType)m_buf[++i] == DataType::INT32)
             {
+                // int 占4字节
                 int len = *((int *)(&m_buf[++i]));
                 i += 4;
                 std::cout << string(&m_buf[i], len);
@@ -289,7 +292,7 @@ void DataStream::write(const Serializable & value)
     value.serialize(*this);
 }
 
-
+// 递归终止函数
 void DataStream::write_args()
 {
     
@@ -334,6 +337,7 @@ bool DataStream::read(int32_t & value)
     }
     ++m_pos;
     value = *((int32_t *)(&m_buf[m_pos]));
+    // 如果是 BigEndian，需要反转字节序
     if (m_byteorder == ByteOrder::BigEndian)
     {
         char * first = (char *)&value;
@@ -457,17 +461,19 @@ bool DataStream::read(Serializable & value)
     return value.unserialize(*this);
 }
 
-
+// 递归终止函数
 bool DataStream::read_args()
 {
     return true;
 }
 
+// 返回数据流的起始地址
 const char * DataStream::data() const
 {
     return m_buf.data();
 }
 
+// 返回数据流的大小
 int DataStream::size() const
 {
     return m_buf.size();
@@ -489,6 +495,7 @@ size_t DataStream::ByteSize()
     return sizeof(char) * m_buf.size();
 }
 
+// 保存数据到文件
 void DataStream::save(const string & filename)
 {
     ofstream fout(filename);
@@ -497,6 +504,7 @@ void DataStream::save(const string & filename)
     fout.close();
 }
 
+// 从文件中加载数据
 void DataStream::load(const string & filename)
 {
     ifstream fin(filename);

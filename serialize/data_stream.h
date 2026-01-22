@@ -52,11 +52,14 @@ public:
         LittleEndian
     };
 
+    // constructor
     DataStream();
     DataStream(const string & data);
     DataStream(const char* ptr, size_t size);
+    // destructor
     ~DataStream();
 
+    // basic function(write)
     void show() const;
     void write(const char * data, int len);
     void write(bool value);
@@ -71,6 +74,7 @@ public:
     void write(const string & value);
     void write(const Serializable & value);
  
+    // template function(write)
     template <typename T>
     void write(const std::vector<T> & value);
 
@@ -83,15 +87,18 @@ public:
     template <typename T>
     void write(const std::set<T> & value);
 
-    //采用SFINAE特性保证T为模板类型
+    // enum type(write)
+    //Use the SFINAE feature to ensure that T is a template type
     template <typename T, typename = std::enable_if_t<std::is_enum<T>::value>>
     void write(const T& value);
 
+    // Variable parameter writing
     template <typename T, typename ...Args>
     void write_args(const T & head, const Args&... args);
 
     void write_args();
 
+    // basic function(read)
     bool read(char * data, int len);
     bool read(bool & value);
     bool read(char & value);
@@ -104,6 +111,7 @@ public:
     bool read(string & value);
     bool read(Serializable & value);
 
+    // template function(read)
     template <typename T>
     bool read(std::vector<T> & value);
 
@@ -116,15 +124,18 @@ public:
     template <typename T>
     bool read(std::set<T> & value);
 
+    // enum type(read)
     //采用SFINAE特性保证T为枚举类型
     template <typename T, typename = std::enable_if_t<std::is_enum<T>::value>>
     bool read(T& value);
 
+    // Variable parameter reading
     template <typename T, typename ...Args>
     bool read_args(T & head, Args&... args);
 
     bool read_args();
 
+    // basic function
     const char * data() const;
     int size() const;
     size_t ByteSize();
@@ -133,6 +144,7 @@ public:
     void save(const string & filename);
     void load(const string & filename);
 
+    // Operator overloading
     DataStream & operator << (bool value);
     DataStream & operator << (char value);
     DataStream & operator << (int32_t value);
@@ -185,9 +197,9 @@ private:
     ByteOrder byteorder();
 
 private:
-    std::vector<char> m_buf;
-    int m_pos;
-    ByteOrder m_byteorder;
+    std::vector<char> m_buf;    // 存储序列化后的数据
+    int m_pos;                  // m_buf 的当前位置
+    ByteOrder m_byteorder;      // 字节序
 };
 
 template <typename T>
@@ -359,6 +371,7 @@ bool DataStream::read(std::set<T> & value)
     return true;
 }
 
+// Overloaded reading function for reading enumeration types
 template <typename T, typename>
 bool DataStream::read(T& value)
 {

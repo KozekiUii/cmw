@@ -15,7 +15,7 @@ public:
     explicit Time(uint64_t nanoseconds);
     explicit Time(int nanoseconds);
     explicit Time(double seconds);
-    Time(u_int32_t seconds, u_int32_t nanoseconds);
+    Time(uint32_t seconds, uint32_t nanoseconds);
     Time(const Time& other);
     Time& operator=(const Time& other);
 
