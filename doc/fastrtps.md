@@ -26,7 +26,7 @@
 
 ## 2. FastDDS的版本说明
 
-可以看见`FastDDS`现在的架构有四层`Application`、`DDS`层、`RTPS`层`Transport`层
+可以看见`FastDDS`现在的架构有四层: `Application`、`DDS`层、`RTPS`层`Transport`层
 
 - `DDS`层是对`RTPS`层的抽象，可以看见`DDS`层里有很多角色，如：`Publisher`、`Subscriber`、`DataWriter`、`DataReader`、`Topic`、`DomainParticipant`等，反而搞得很复杂
 - 而`RTPS`层相对而言比较清晰简单`RTPSWriter`用于发送数据，`RTPSReader`用于读取数据，`RTPSParticipant`用于区分不同进程

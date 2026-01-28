@@ -1,6 +1,9 @@
+Documentation:
+  CommentFormat: Doxygen  # 可选值：Plaintext、Markdown、Doxygen
+
 CompileFlags:
   Add: 
-    - "-IE:/Study"
-    - "-IE:/Study/cmw"
-    - "-IE:/Study/cmw/thirdparty"
-    - "-IE:/Study/cmw/transport"
+    - "-I/home/komorebi/"
+    - "-I/home/komorebi/cmw"
+    - "-I/home/komorebi/cmw/thirdparty"
+    - "-I/home/komorebi/cmw/transport"

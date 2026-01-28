@@ -16,6 +16,7 @@ Transport::~Transport() { Shutdown(); }
 
 void Transport::Shutdown()
 {
+    // atomic::exchange 返回上一次的值，并将is_shutdown_设置为true
     if(is_shutdown_.exchange(true)){
         return ;
     }
@@ -27,7 +28,7 @@ void Transport::Shutdown()
     participant_ = nullptr;
 }
 
-//创建Participant，此函数会在Transport构造函数中调用
+// 创建Participant，此函数会在Transport构造函数中调用
 void Transport::CreateParticipant(){
 
     std::string participant_name = 
