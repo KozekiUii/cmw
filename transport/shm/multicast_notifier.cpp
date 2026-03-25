@@ -1,10 +1,15 @@
 #include <cmw/transport/shm/multicast_notifier.h>
 #include <cmw/common/global_data.h>
+
+#include <cerrno>
+#include <iostream>
 #include <string.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <fcntl.h>
 #include <poll.h>
+#include <unistd.h>
+
 namespace hnu{
 namespace cmw{
 namespace transport{

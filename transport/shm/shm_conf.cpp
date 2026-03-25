@@ -20,24 +20,31 @@ ShmConf::~ShmConf() {}
    const uint64_t ShmConf::BLOCK_SIZE = 1024;
   // Message info size, Byte
    const uint64_t ShmConf::MESSAGE_INFO_SIZE = 1024;
-  // For message 0-10K
-   const uint32_t ShmConf::BLOCK_NUM_16K = 512;
-   const uint64_t ShmConf::MESSAGE_SIZE_16K = 1024 * 16;
-  // For message 10K-100K
-   const uint32_t ShmConf::BLOCK_NUM_128K = 128;
-   const uint64_t ShmConf::MESSAGE_SIZE_128K = 1024 * 128;
-  // For message 100K-1M
-   const uint32_t ShmConf::BLOCK_NUM_1M = 64;
-   const uint64_t ShmConf::MESSAGE_SIZE_1M = 1024 * 1024;
-  // For message 1M-6M
-   const uint32_t ShmConf::BLOCK_NUM_8M = 32;
-   const uint64_t ShmConf::MESSAGE_SIZE_8M = 1024 * 1024 * 8;
-  // For message 6M-10M
-   const uint32_t ShmConf::BLOCK_NUM_16M = 16;
-   const uint64_t ShmConf::MESSAGE_SIZE_16M = 1024 * 1024 *16;
-  // For message 10M+
-   const uint32_t ShmConf::BLOCK_NUM_MORE = 8;
-   const uint64_t ShmConf::MESSAGE_SIZE_MORE = 1024 * 1024 * 32;
+
+   
+  // For message 0-16K
+  const uint32_t ShmConf::BLOCK_NUM_16K = 512;
+  const uint64_t ShmConf::MESSAGE_SIZE_16K = 1024 * 16;
+
+  // For message 16K-128K
+  const uint32_t ShmConf::BLOCK_NUM_128K = 128;
+  const uint64_t ShmConf::MESSAGE_SIZE_128K = 1024 * 128;
+
+  // For message 128K-1M
+  const uint32_t ShmConf::BLOCK_NUM_1M = 64;
+  const uint64_t ShmConf::MESSAGE_SIZE_1M = 1024 * 1024;
+
+  // For message 1M-8M
+  const uint32_t ShmConf::BLOCK_NUM_8M = 32;
+  const uint64_t ShmConf::MESSAGE_SIZE_8M = 1024 * 1024 * 8;
+
+  // For message 8M-16M
+  const uint32_t ShmConf::BLOCK_NUM_16M = 16;
+  const uint64_t ShmConf::MESSAGE_SIZE_16M = 1024 * 1024 * 16;
+
+  // For message 16M+
+  const uint32_t ShmConf::BLOCK_NUM_MORE = 8;
+  const uint64_t ShmConf::MESSAGE_SIZE_MORE = 1024 * 1024 * 32;
 
 void ShmConf::Update(const uint64_t& real_msg_size){
     ceiling_msg_size_ = GetCeilingMessageSize(real_msg_size);

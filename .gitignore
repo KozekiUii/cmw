@@ -5,3 +5,4 @@ base/bin
 .cache
 build
 .clangd
+example

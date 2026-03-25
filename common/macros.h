@@ -13,12 +13,14 @@
 DEFINE_TYPE_TRAIT(HasShutdown, Shutdown)
 
 template <typename T>
-typename std::enable_if<HasShutdown<T>::value>::type CallShutdown(T *instance){
+typename std::enable_if<HasShutdown<T>::value>::type
+CallShutdown(T *instance){
     instance->Shutdown();
 }
 
 template <typename T>
-typename std::enable_if<!HasShutdown<T>::value>::type CallShutdown(T *instance){
+typename std::enable_if<!HasShutdown<T>::value>::type
+CallShutdown(T *instance){
     (void)instance;
 }
 
@@ -33,6 +35,9 @@ typename std::enable_if<!HasShutdown<T>::value>::type CallShutdown(T *instance){
 #define DISALLOW_COPY_AND_ASSIGN(classname) \
   classname(const classname &) = delete;    \
   classname &operator=(const classname &) = delete;
+
+/*lambada引用捕获 [&]: 将作用域中所有可见的局部变量都设置为引用*/
+// static 局部变量: 只初始化一次，意思就是只在第一次调用时初始化为nullptr，之后的调用都不会再初始化
 
 /*利用 std::once_flag 和 std::call_once 实现的线程安全的单例宏*/
 #define DECLARE_SINGLETON(classname)                                      \

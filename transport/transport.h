@@ -49,10 +49,10 @@ public:
 private:
     //构造函数会调用，来创建一个participant
     void CreateParticipant();
-    ParticipantPtr participant_ = nullptr;
-    std::atomic<bool> is_shutdown_ = {false};
+    ParticipantPtr participant_ = nullptr;      // rtps 参与者，在构造时创建
+    std::atomic<bool> is_shutdown_ = {false};   // 标记是否已经关闭
 
-    RtpsDispatcherPtr rtps_dispatcher_ = nullptr;
+    RtpsDispatcherPtr rtps_dispatcher_ = nullptr;   // rtps 分发器，在构造时创建
 
     DECLARE_SINGLETON(Transport)
 };

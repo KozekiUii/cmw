@@ -3,6 +3,7 @@
 #include <sched.h>
 #include <sys/resource.h>
 #include <sys/syscall.h>
+#include <unistd.h>
 
 #include <chrono>
 
@@ -23,7 +24,7 @@ Processor::Processor() { running_.store(true); }
 Processor::~Processor() { Stop(); }
 
 void Processor::Run(){
-    tid_.store(static_cast<int>(syscall(SYS_gettid)));
+    tid_.store(static_cast<int>(::syscall(SYS_gettid)));
 
     snap_shot_->processor_id.store(tid_);
 

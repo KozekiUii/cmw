@@ -46,24 +46,24 @@ public:
 
 protected:
     virtual bool Destroy();
-    virtual void Reset() = 0;
-    virtual bool Remove() = 0;
-    virtual bool OpenOnly() = 0;
-    virtual bool OpenOrCreate() = 0;
-    bool init_;
-    ShmConf conf_;
-    uint64_t channel_id_;
+    virtual void Reset() = 0;   // 重置共享内存
+    virtual bool Remove() = 0;  // 删除共享内存
+    virtual bool OpenOnly() = 0; // 只读打开共享内存
+    virtual bool OpenOrCreate() = 0; // 创建或打开共享内存
+    bool init_;     // 初始化标志
+    ShmConf conf_;  // 共享内存配置
+    uint64_t channel_id_; // 通道ID
 
-    State* state_;
-    Block* blocks_;
+    State* state_; // 状态管理
+    Block* blocks_; // 块内存
     void* managed_shm_;
-    std::mutex block_buf_lock_;
-    std::unordered_map<uint32_t, uint8_t*> block_buf_addrs_;
+    std::mutex block_buf_lock_; // 块缓冲区锁
+    std::unordered_map<uint32_t, uint8_t*> block_buf_addrs_;    // 块缓冲区地址映射
 
 private:
-    bool Remap();
-    bool Recreate(const uint64_t& msg_size);
-    uint32_t GetNextWritableBlockIndex();
+    bool Remap();   // 重新映射共享内存
+    bool Recreate(const uint64_t& msg_size); // 重新创建共享内存
+    uint32_t GetNextWritableBlockIndex(); // 获取下一个可写 Block 的索引
 };
 
 

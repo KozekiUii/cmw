@@ -1,6 +1,7 @@
 #include <cmw/transport/common/identity.h>
 
-#include <uuid/uuid.h>
+#include <random>
+
 #include <cmw/common/util.h>
 
 namespace hnu    {
@@ -12,9 +13,11 @@ namespace transport {
 Identity::Identity(bool need_generate) : hash_value_(0) {
   std::memset(data_, 0, ID_SIZE);
   if (need_generate) {
-    uuid_t uuid;
-    uuid_generate(uuid);
-    std::memcpy(data_, uuid, ID_SIZE);
+    std::random_device rd;
+    std::uniform_int_distribution<int> dist(0, 255);
+    for (size_t i = 0; i < ID_SIZE; ++i) {
+      data_[i] = static_cast<char>(dist(rd));
+    }
     Update();
   }
 }
@@ -40,6 +43,10 @@ Identity& Identity::operator=(const Identity& rhs) {
 
 bool Identity::operator==(const Identity& rhs) const {
   return std::memcmp(data_, rhs.data_, ID_SIZE) == 0;
+}
+
+bool Identity::operator!=(const Identity& rhs) const {
+  return !(*this == rhs);
 }
 
 

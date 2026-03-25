@@ -136,7 +136,7 @@
 >
 > [DDS与FastRTPS（二）-阿里云开发者社区 (aliyun.com)](https://developer.aliyun.com/article/1134961)
 
-去过一遍管饭提供的`example`就能明白是如何工作的了
+去过一遍官方提供的`example`就能明白是如何工作的了
 
 ### 2.2 Shm通信
 
@@ -169,7 +169,7 @@
   `Segment`创建共享内存时的大小为，`EXTRA_SIZE`就是上面灰色的未使用的部分
 
   ```c++
-  // 4K + 1K + 1K + (1K + 129k) * 128
+  // 4K + 1K + (1K + 129k) * 128
   EXTRA_SIZE+ STATE_SIZE + (BLOCK_SIZE + block_buf_size_) * block_num_
   ```
 
