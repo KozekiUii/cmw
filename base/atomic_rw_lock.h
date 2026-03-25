@@ -2,6 +2,7 @@
 #define HNU_BASE_ATOMIC_RW_LOCK_H_
 
 #include <cmw/base/rw_lock_guard.h>
+#include <mutex>
 
 namespace hnu {
 namespace cmw {
@@ -47,6 +48,7 @@ inline void AtomicRWLock::ReadLock() {
       // 若 lock_num < 0，说明有成员在进行写操作，
       // 若 write_lock_wait_num_ > 0，说明有成员在等待写操作
       // 若满足条件，则继续自旋等待，每5次让出1次CPU时间片，让给其他线程
+      // 如果有线程在等待写锁，或者有线程在进行写操作，那么读线程就不能获取写锁
       while (lock_num < RW_LOCK_FREE || write_lock_wait_num_.load() > 0) {
         if (++retry_times == MAX_RETRY_TIMES) {
           // saving cpu
@@ -70,6 +72,10 @@ inline void AtomicRWLock::ReadLock() {
         }
         lock_num = lock_num_.load();
       }
+      // 如果在写线程结束后，有其他线程改变了lock_num_，那么compare_exchange_weak会失败，
+      // 此时需要重新获取lock_num_，并重新尝试获取写锁
+      // 比如：1. 另一个线程获取了写锁，lock_num_变为-1
+      //      2. 另一个线程获取了读锁，lock_num_变为1
     } while (!lock_num_.compare_exchange_weak(lock_num, lock_num + 1,
                                               std::memory_order_acq_rel,
                                               std::memory_order_relaxed));
@@ -80,7 +86,9 @@ inline void AtomicRWLock::WriteLock() {
   int32_t rw_lock_free = RW_LOCK_FREE;
   uint32_t retry_times = 0;
   // atomic operation
+  // 等待获取写锁的线程数加 1，此时还未获取到写锁
   write_lock_wait_num_.fetch_add(1);
+  // 尝试获取写锁，如果获取失败，则继续自旋等待，每5次让出1次CPU时间片，让给其他线程
   while (!lock_num_.compare_exchange_weak(rw_lock_free, WRITE_EXCLUSIVE,
                                           std::memory_order_acq_rel,
                                           std::memory_order_relaxed)) {

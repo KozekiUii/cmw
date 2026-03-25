@@ -4,3 +4,4 @@ base/bin
 .vscode
 .cache
 build
+.clangd

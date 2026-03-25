@@ -79,6 +79,7 @@ private:
       value_ptr.store(new V(value), std::memory_order_release);
     }
     Entry(K key, V &&value) : key(key) {
+      // 移动构造,forward实现完美转发
       value_ptr.store(new V(std::forward<V>(value)), std::memory_order_release);
     }
     ~Entry() { delete value_ptr.load(std::memory_order_acquire); }
