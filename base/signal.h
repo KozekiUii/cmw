@@ -1,11 +1,3 @@
-/**
- * @File Name: signal.h
- * @brief  信号槽机制
- * @Author : Timer email:330070781@qq.com
- * @Version : 1.0
- * @Creat Date : 2023-12-17
- * 
- */
 #ifndef CMW_BASE_SIGNAL_H_
 #define CMW_BASE_SIGNAL_H_
 

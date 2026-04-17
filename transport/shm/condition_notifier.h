@@ -1,11 +1,3 @@
-/**
- * @File Name: condition_notifier.h
- * @brief  基于共享内存的进程间通知方式
- * @Author : Timer email:330070781@qq.com
- * @Version : 1.0
- * @Creat Date : 2024-02-06
- * 
- */
 #ifndef CMW_TRANSPORT_SHM_CONDITION_NOTIFIER_H_
 #define CMW_TRANSPORT_SHM_CONDITION_NOTIFIER_H_
 

@@ -1,11 +1,3 @@
-/**
- * @File Name: identity.h
- * @brief  
- * @Author : Timer email:330070781@qq.com
- * @Version : 1.0
- * @Creat Date : 2023-12-05
- * 
- */
 #ifndef CMW_TRANSPORT_COMMON_IDENTITY_H_
 #define CMW_TRANSPORT_COMMON_IDENTITY_H_
 

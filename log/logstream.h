@@ -1,11 +1,3 @@
-/**
- * @File Name: logstream.h
- * @brief  
- * @Author : Timer email:330070781@qq.com
- * @Version : 1.0
- * @Creat Date : 2024-02-08
- * 
- */
 #ifndef CMW_LOG_LOGSTREAM_H_
 #define CMW_LOG_LOGSTREAM_H_
 #include <sstream>

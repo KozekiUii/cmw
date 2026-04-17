@@ -1,11 +1,3 @@
-/**
- * @File Name: attributes_filler.cpp
- * @brief  
- * @Author : Timer email:330070781@qq.com
- * @Version : 1.0
- * @Creat Date : 2023-12-06
- * 
- */
 #include <cmw/transport/rtps/attributes_filler.h>
 #include <cmw/transport/qos/qos_profile_conf.h>
 namespace hnu    {

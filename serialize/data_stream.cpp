@@ -1,11 +1,3 @@
-/**
- * @File Name: data_stream.cpp
- * @brief  
- * @Author : Timer email:330070781@qq.com
- * @Version : 1.0
- * @Creat Date : 2023-11-17
- * 
- */
 #include <cmw/serialize/data_stream.h>
 namespace hnu{
 namespace cmw{

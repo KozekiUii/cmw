@@ -1,11 +1,3 @@
-/**
- * @File Name: log.h
- * @brief  
- * @Author : Timer email:330070781@qq.com
- * @Version : 1.0
- * @Creat Date : 2024-02-08
- * 
- */
 #ifndef CMW_COMMON_LOG_H_
 #define CMW_COMMON_LOG_H_
 

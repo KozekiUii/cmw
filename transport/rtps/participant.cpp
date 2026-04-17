@@ -1,12 +1,3 @@
-/**
- * @File Name: participant.cpp
- * @brief  
- * @Author : Timer email:330070781@qq.com
- * @Version : 1.0
- * @Creat Date : 2023-12-06
- * 
- */
-
 #include <cmw/transport/rtps/participant.h>
 #include <fastrtps/rtps/RTPSDomain.h>
 #include <fastrtps/rtps/attributes/RTPSParticipantAttributes.h>
