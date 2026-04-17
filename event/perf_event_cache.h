@@ -14,15 +14,20 @@ namespace hnu    {
 namespace cmw   {
 namespace event {
 
+/**
+ * @brief PerfEventCache 用于缓存性能事件，以便在适当的时候进行处理和输出
+ *
+ */
 class PerfEventCache
 {
 
 public:
-        using EventBasePtr = std::shared_ptr<EventBase>;
-        ~PerfEventCache();
+    using EventBasePtr = std::shared_ptr<EventBase>;
+    ~PerfEventCache();
+    // 添加一个性能事件到缓存中
     void AddTransportEvent(const TransPerf event_id, const uint64_t channel_id,
                          const uint64_t msg_seq, const uint64_t stamp = 0,
-                         const std::string& adder = "-");   
+                         const std::string& adder = "-");
 
     std::string PerfFile()  { return perf_file_;}
     void Shutdown();
@@ -34,7 +39,7 @@ private:
 
         std::thread io_thread_;
         std::ofstream of_;
-        
+
         bool enable_ = false;
         bool shutdown_ = false;
 

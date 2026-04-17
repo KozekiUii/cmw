@@ -24,12 +24,16 @@ namespace hnu{
 namespace cmw{
 namespace serialize{
 
+/**
+ * @brief 数据流类，提供序列化和反序列化功能
+ *
+ */
 class DataStream
 {
 public:
     enum DataType
     {
-        BOOL = 0,  
+        BOOL = 0,
         CHAR,
         INT32,
         INT64,
@@ -73,7 +77,7 @@ public:
     void write(const char * value);
     void write(const string & value);
     void write(const Serializable & value);
- 
+
     // template function(write)
     template <typename T>
     void write(const std::vector<T> & value);

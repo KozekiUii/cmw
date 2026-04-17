@@ -109,9 +109,13 @@ template <typename T> std::shared_ptr<T> ObjectPool<T>::GetObject() {
   }
 
   auto self = this->shared_from_this();
+
   auto obj =
-      std::shared_ptr<T>(reinterpret_cast<T *>(free_head_),
-                         [self](T *object) { self->ReleaseObject(object); });
+      std::shared_ptr<T>(reinterpret_cast<T *>(free_head_), // 从空闲链表取出对象
+                         [self](T *object) { self->ReleaseObject(object); }); // 删除器: 借出的对象使用完，通过ReleaseObject()归还给对象池
+  // 空闲链表：free_head_ → Node1 → Node2 → Node3 → nullptr
+  // 前面从空闲链表中取出了Node1，现在Node1已经不属于空闲链表了，将free_head_指向Node2
+  // 执行后空闲链表：free_head_ → Node2 → Node3 → nullptr
   free_head_ = free_head_->next;
   return obj;
 }

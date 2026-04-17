@@ -18,7 +18,7 @@
 
 - 接收方通过`Transport`的`CreateReceiver`函数可以创建两种类型的`Receiver`;和`Transmitter`一样，支持基于`FastRtps`和`Shm`的通信方式
 - 和发送方的主动发送数据不同，接收方是被动的，只有当监测到有数据发出后，接收方才会去接收数据，并去执行回调函数处理数据。
-- 监测数据到来的逻辑则是在`Dispatcher`中实现，当发送方发送数据后，`Dispatcher`监测到数据到来时会去执行`Onmessage`函数，此函数会将数据发序列化成`Message`类型，然后会调用`Receiver`的`OnNewMessage`，在`OnNewMessage`函数中会去执行数据接收方注册的回调函数
+- 监测数据到来的逻辑则是在`Dispatcher`中实现，当发送方发送数据后，`Dispatcher`监测到数据到来时会去执行`Onmessage`函数，此函数会将数据反序列化成`Message`类型，然后会调用`Receiver`的`OnNewMessage`，在`OnNewMessage`函数中会去执行数据接收方注册的回调函数
 
 <img src="image/cmw通信软件架构.png" alt="cmw通信软件架构" style="zoom: 50%;" />
 
@@ -342,7 +342,7 @@
 
 **基于组播网络的消息通知**：`cmw/transport/shm/multicast_notifier`
 
-- 基于网络的方式会比较简单，发送端会发送一个`ReadableInfo`到多播组中，接收端会会去监听此`listen_fd_`上的输入事件，
+- 基于网络的方式会比较简单，发送端会发送一个`ReadableInfo`到多播组中，接收端会去监听此`listen_fd_`上的输入事件，
 
   ```c++
   bool MulticastNotifier::Listen(int timeout_ms, ReadableInfo* info){

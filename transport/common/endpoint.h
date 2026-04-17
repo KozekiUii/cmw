@@ -19,12 +19,12 @@ class Endpoint
     public:
         explicit Endpoint(const RoleAttributes& attr);
         virtual ~Endpoint();
-    
+
         const Identity& id() const{ return id_;}
         const RoleAttributes& attributes() const { return attr_;}
 
     protected:
-        bool enabled_;
+        bool enabled_;  // 标记是否启用
         Identity id_;
         RoleAttributes attr_;
 

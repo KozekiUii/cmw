@@ -61,9 +61,9 @@ Transmitter<M>::~Transmitter() {}
 
 template <typename M>
 bool Transmitter<M>::Transmit(const MessagePtr& msg){
-
+    // 将消息序列号设置为当前的 seq_num_，并在发送前将 seq_num_ 自增，以便下一条消息使用新的序列号
     msg_info_.set_seq_num(NextSeqNum());
-
+    // 记录性能事件，表示开始传输消息
     PerfEventCache::Instance()->AddTransportEvent(TransPerf::TRANSMIT_BEGIN, attr_.channel_id ,msg_info_.seq_num());
     
     return Transmit(msg, msg_info_);

@@ -19,7 +19,8 @@ public:
 
     // 减少引用计数（有边界检查）
     void DecreaseReferenceCounts() {
-        uint32_t  current_reference_count = reference_count_.load();
+      uint32_t current_reference_count = reference_count_.load();
+      // CAS
         do{
             if(current_reference_count == 0)
             {

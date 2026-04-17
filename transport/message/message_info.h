@@ -38,6 +38,7 @@ public:
     void set_channel_id(uint64_t channel_id) { channel_id_ = channel_id; }
 
     uint64_t seq_num() const { return seq_num_; }
+    // 将 seq_num 设置为指定值，通常用于接收方在处理消息时更新 seq_num，以便发送方能够正确地进行重传和丢弃过期消息等操作
     void set_seq_num(uint64_t seq_num) { seq_num_ = seq_num; }
 
     const Identity& spare_id() const { return spare_id_; }

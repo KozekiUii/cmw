@@ -13,11 +13,9 @@ int main(int argc, char* argv[]) {
   que.Enqueue("b");
   que.Enqueue("b");
   que.Enqueue("d");
-//   que.PrintData();
   std::string t;
   que.Dequeue(&t);
   std::cout << t << std::endl;
-//   que.PrintData();
  
   return 0;
 }

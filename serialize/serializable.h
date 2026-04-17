@@ -4,7 +4,7 @@
 namespace hnu{
 namespace cmw{
 namespace serialize{
-    
+
 class DataStream;
 
 class Serializable
@@ -14,6 +14,7 @@ public:
     virtual bool unserialize(DataStream & stream) = 0;
 };
 
+// __VA_ARGS__ 是一个预定义的宏，代表可变参数列表
 #define SERIALIZE(...)                              \
                                                     \
     void serialize(DataStream & stream) const       \
@@ -34,7 +35,7 @@ public:
         stream.read_args(__VA_ARGS__);              \
         return true;                                \
     }
-    
+
 }
 }
 }

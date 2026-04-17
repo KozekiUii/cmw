@@ -11,10 +11,9 @@ namespace cmw {
 namespace common {
 
 /*
-  std::hash<std::string>{} ： 创建一个 std::hash<std::string>的临时对象 { } 是初始化列表 ， std::hash<std::string> 内部重载了()
-  获取一个字符串的哈希值
+  std::hash 是一个函数对象模板，提供了对各种类型进行哈希计算的功能。std::hash<std::string> 是 std::hash 模板的一个特化版本，用于计算 std::string 类型的哈希值
 */
-inline std::size_t Hash(const std::string& key) {
+inline std::size_t Hash(const std::string &key) {
   return std::hash<std::string>{}(key);
 }
 

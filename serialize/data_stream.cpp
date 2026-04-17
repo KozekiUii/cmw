@@ -443,6 +443,7 @@ bool DataStream::read(string & value)
     {
         return false;
     }
+    // assign 会自动调用 string 的 move 构造函数，避免了不必要的内存复制
     value.assign((char *)&(m_buf[m_pos]), len);
     m_pos += len;
     return true;

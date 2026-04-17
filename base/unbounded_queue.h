@@ -89,9 +89,9 @@ class UnboundedQueue {
     }
   }
 
-  std::atomic<Node*> head_;
-  std::atomic<Node*> tail_;
-  std::atomic<size_t> size_;
+  std::atomic<Node*> head_;   // 头结点
+  std::atomic<Node*> tail_;   // 尾结点
+  std::atomic<size_t> size_;  // 队列大小
 };
 }
 }

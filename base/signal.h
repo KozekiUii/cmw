@@ -32,10 +32,11 @@ class Signal {
   Signal() {}
   virtual ~Signal() { DisconnectAllSlots(); }
 
-  //重载了()操作符，也就是说当像这样调用时signal(msg, msg_info)，
+  //重载了()操作符，也就是说当像这样调用时 signal(msg, msg_info)，
   //就会对该信号对应的所有槽（所有关联的回调函数）进行一次调用，这其实就是通知所有监听该信号的回调函数。
   void operator()(Args... args) {
     SlotList local;
+    // 锁内复制槽列表，避免在调用槽函数时持有锁，导致死锁
     {
       std::lock_guard<std::mutex> lock(mutex_);
       for (auto& slot : slots_) {
@@ -43,6 +44,7 @@ class Signal {
       }
     }
 
+    // 锁外调用槽函数，避免死锁
     if (!local.empty()) {
       for (auto& slot : local) {
         (*slot)(args...);
@@ -53,7 +55,8 @@ class Signal {
   }
 
   //为某个回调函数创建一个Slot共享指针，然后加入到自己的槽列表并返回一个Connection关联实例
-  ConnectionType Connect(const Callback& cb) {
+  ConnectionType Connect(const Callback &cb) {
+    // 创建一个新的Slot实例，并将其封装在一个shared_ptr中
     auto slot = std::make_shared<Slot<Args...>>(cb);
     {
       std::lock_guard<std::mutex> lock(mutex_);
@@ -87,6 +90,7 @@ class Signal {
     for (auto& slot : slots_) {
       slot->Disconnect();
     }
+    // list.clear()会调用每个元素的析构函数，shared_ptr的析构函数会自动释放资源
     slots_.clear();
   }
 
@@ -96,6 +100,8 @@ class Signal {
 
   void ClearDisconnectedSlots() {
     std::lock_guard<std::mutex> lock(mutex_);
+    // 移除所有已断开连接的槽
+    // 先使用std::remove_if将不满足条件的元素移到末尾，然后使用erase删除这些元素
     slots_.erase(
         std::remove_if(slots_.begin(), slots_.end(),
                        [](const SlotPtr& slot) { return !slot->connected(); }),
@@ -108,10 +114,14 @@ class Signal {
 
 
 /**
- * 保存了一个信号的指针一个槽的指针，
- * 一个Connection实例就代表了一条关联关系。
- * 通过Slot的标记位显示是否处于关联状态。
-*/
+ * @brief 连接器：
+  保存了一个Slot的shared_ptr和一个指向Signal的指针，提供了Disconnect函数用来断开连接。
+   Connection类的实例在Signal::Connect函数中被创建并返回给调用者，调用者可以通过这个实例来管理连接，比如断开连接等。
+ * @union slot_: 保存了一个Slot的shared_ptr，表示与Signal关联的槽。
+ * @union signal_: 保存了一个指向Signal的指针，表示该连接所属的信号。
+ *
+ * @tparam Args
+ */
 template <typename... Args>
 class Connection {
  public:
@@ -156,8 +166,8 @@ class Connection {
   }
 
  private:
-  SlotPtr slot_;
-  SignalPtr signal_;
+  SlotPtr slot_;  // 保存了一个Slot的shared_ptr，表示与Signal关联的槽
+  SignalPtr signal_;  // 保存了一个指向Signal的指针，表示该连接所属的信号
 };
 
 /*观察者:

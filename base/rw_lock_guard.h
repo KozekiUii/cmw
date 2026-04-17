@@ -16,6 +16,7 @@ namespace base {
 template <typename RWLock>
 class ReadLockGuard {
  public:
+ // explicit关键字用于构造函数，禁止隐式类型转换，强制要求显式地创建对象
   explicit ReadLockGuard(RWLock& lock) : rw_lock_(lock) { rw_lock_.ReadLock(); }
 
   ~ReadLockGuard() { rw_lock_.ReadUnlock(); }

@@ -25,6 +25,7 @@ public:
     bool operator!=(const Identity& another) const;
 
     /*拿到标识符的属性值*/
+    // 函数后加const意味这个函数为只读函数，不能修改成员的值
     std::string ToString() const;
     size_t Length() const;
     uint64_t HashValue() const;

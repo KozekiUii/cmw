@@ -57,6 +57,12 @@ class CCObjectPool : public std::enable_shared_from_this<CCObjectPool<T>> {
     uint32_t capacity_ = 0;
 };
 
+/**
+ * @brief 初始化对象池，分配内存并构建空闲链表
+ *
+ * @tparam T
+ * @param size
+ */
 template <typename T>
 CCObjectPool<T>::CCObjectPool(uint32_t size) : capacity_(size) {
     node_arena_ = static_cast<Node *>(CheckedCalloc(capacity_, sizeof(Node)));
@@ -98,13 +104,13 @@ bool CCObjectPool<T>::FindFreeHead(Head *head){
     {
         *head = old_head;
         return true;
-    }  
+    }
 }
 
 template <typename T>
 std::shared_ptr<T> CCObjectPool<T>::GetObject() {
     Head free_head;
-    
+
     // 尝试从对象池中找到一个空闲的节点
     if (cyber_unlikely(!FindFreeHead(&free_head))) {
         return nullptr;  // 如果找不到空闲节点，返回 nullptr 表示对象池已经空了
@@ -121,8 +127,8 @@ std::shared_ptr<T> CCObjectPool<T>::GetObject() {
 /**
  * @brief  ReleaseObject 函数的目标是将一个使用完毕的对象 object 放回对象池。
  *         对象池中使用了链表来管理空闲对象节点，每次释放对象时，需要将其重新加入空闲链表的头部。
- * @tparam T 
- * @param  object: 
+ * @tparam T
+ * @param  object:
  */
 template <typename T>
 void CCObjectPool<T>::ReleaseObject(T *object) {

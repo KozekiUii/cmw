@@ -28,12 +28,17 @@ class ThreadPool {
   ~ThreadPool();
 
  private:
- BoundedQueue<std::function<void()>> task_queue_;
- std::vector<std::thread> workers_;
+  BoundedQueue<std::function<void()>> task_queue_;
+  std::vector<std::thread> workers_;
   std::atomic_bool stop_;
 };
 
-/*构造函数入参为 线程数量和最大任务数量*/
+/**
+ * @brief 构造函数，创建线程池并初始化任务队列
+ *
+ * @param threads
+ * @param max_task_num
+ */
 inline ThreadPool::ThreadPool(std::size_t threads, std::size_t max_task_num)
     : stop_(false) {
   /*创建一个BoundedQueue，采用的等待策略是阻塞策略*/
@@ -44,7 +49,9 @@ inline ThreadPool::ThreadPool(std::size_t threads, std::size_t max_task_num)
   /* 初始化线程池 创建空的任务，每个任务都是一个while循环 */
   // reserve预分配内存,避免频繁的内存分配
   workers_.reserve(threads);
+  // 线程池中的线程循环等待领取任务并执行
   for (size_t i = 0; i < threads; ++i) {
+    // 就地构造线程对象，lambda函数作为线程的执行体
     workers_.emplace_back([this] {
       while (!stop_) {
         /*返回值为空的可调用对象*/
@@ -60,8 +67,16 @@ inline ThreadPool::ThreadPool(std::size_t threads, std::size_t max_task_num)
 
 // before using the return value, you should check value.valid()
 
-// Function to add tasks to the task queue;
-// The Enqueue function receives a callable object f and any parameters args..., and returns a std::future whose type is the return type after the call to f(args...)
+
+/**
+ * @brief 线程池任务入队，接受一个可调用对象f和任意数量的参数args...，并返回一个std::future，其类型是调用f(args...)后的返回类型。
+ *
+ * @tparam F
+ * @tparam Args
+ * @param f
+ * @param args
+ * @return std::future<typename std::result_of<F(Args...)>::type>
+ */
 template <typename F, typename... Args>
 auto ThreadPool::Enqueue(F&& f, Args&&... args)
     -> std::future<typename std::result_of<F(Args...)>::type> {
